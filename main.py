@@ -26,6 +26,8 @@ def validate(text):
         raise ValueError("text must not be whitespace-only")
     if "\n" in text or "\r" in text:
         raise ValueError("text must be a single line")
+    if any(ord(ch) < 32 and ch != "\t" for ch in text):
+        raise ValueError("text must not contain control characters")
     text.encode("utf-8")
 
 
